@@ -10,9 +10,10 @@ create table products(
 );
 
 create table stocks(
-    id_stocks bigserial primary key,
+    id_stock bigserial primary key,
     quantity integer not null,
-    lastUpdate timestamp not null,
+    last_update timestamp not null,
+    code_number varchar(255),
     product bigint not null
 );
 

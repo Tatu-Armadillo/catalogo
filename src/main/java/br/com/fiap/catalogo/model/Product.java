@@ -1,15 +1,11 @@
 package br.com.fiap.catalogo.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "products", schema = "challenge")
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Product {
 
     @Id
@@ -31,5 +27,16 @@ public class Product {
 
     @Column(name = "detalhes")
     private String detalhes;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    private Stock stock;
+
+    public Product(String name, Double price, String modelo, String fabricante, String detalhes) {
+        this.name = name;
+        this.price = price;
+        this.modelo = modelo;
+        this.fabricante = fabricante;
+        this.detalhes = detalhes;
+    }
 
 }
