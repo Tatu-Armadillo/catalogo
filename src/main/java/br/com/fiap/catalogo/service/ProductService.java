@@ -1,5 +1,7 @@
 package br.com.fiap.catalogo.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.fiap.catalogo.model.Product;
@@ -14,6 +16,9 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final StockService stockService;
 
+    public Page<Product> showProducts(final Pageable pageable, final String filter) {
+        return this.productRepository.findAllByNameOrModeloOrFabricante(filter, pageable);
+    }
 
     public Product save(final Product entity) {
         final var product = this.productRepository.saveAndFlush(entity);

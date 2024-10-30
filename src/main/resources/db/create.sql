@@ -1,6 +1,6 @@
 create schema challenge;
 
-create table products(
+create table challenge.products(
     id_product bigserial primary key,
     name varchar(255) not null,
     price numeric(10, 2) not null,
@@ -9,7 +9,7 @@ create table products(
     detalhes varchar(255)
 );
 
-create table stocks(
+create table challenge.stocks(
     id_stock bigserial primary key,
     quantity integer not null,
     last_update timestamp not null,
@@ -17,4 +17,4 @@ create table stocks(
     product bigint not null
 );
 
-alter table stocks add constraint fk_products_stocks foreign key (product) references products (id_product);
+alter table challenge.stocks add constraint fk_products_stocks foreign key (product) references challenge.products (id_product);

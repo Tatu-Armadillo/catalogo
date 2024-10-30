@@ -3,11 +3,15 @@ package br.com.fiap.catalogo.model;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "stocks", schema = "challenge")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Stock {
 
     @Id

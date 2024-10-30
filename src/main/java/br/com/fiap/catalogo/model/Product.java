@@ -1,11 +1,17 @@
 package br.com.fiap.catalogo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "products", schema = "challenge")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 
     @Id
@@ -28,6 +34,7 @@ public class Product {
     @Column(name = "detalhes")
     private String detalhes;
 
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private Stock stock;
 
