@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import br.com.fiap.catalogo.model.Product;
 import br.com.fiap.catalogo.model.Stock;
 import br.com.fiap.catalogo.repository.ProductRepository;
+import br.com.fiap.catalogo.utils.GenetedIdentifyKeyCode;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -21,6 +22,7 @@ public class ProductService {
     }
 
     public Product save(final Product entity) {
+        entity.setIdentifiyKeyNumber(GenetedIdentifyKeyCode.createCodeNumber());
         final var product = this.productRepository.saveAndFlush(entity);
         this.stockService.save(new Stock(product));
         return product;

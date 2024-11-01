@@ -6,7 +6,8 @@ create table challenge.products(
     price numeric(10, 2) not null,
     modelo varchar(255),
     fabricante varchar(255),
-    detalhes varchar(255)
+    detalhes varchar(255),
+    identifiy_key_product varchar(255) unique not null
 );
 
 create table challenge.stocks(

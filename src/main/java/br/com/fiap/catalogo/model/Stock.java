@@ -35,5 +35,10 @@ public class Stock {
     public Stock(final Product product) {
         this.product = product;
     }
+    
+    public Stock(final Integer quantity, final Product product) {
+        this.quantity = quantity;
+        this.product = product;
+    }
 
 }

@@ -34,9 +34,16 @@ public class Product {
     @Column(name = "detalhes")
     private String detalhes;
 
+    @Column(name = "identifiy_key_product")
+    private String identifiyKeyNumber;
+
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private Stock stock;
+
+    public Product(final String identifiyKeyNumber) {
+        this.identifiyKeyNumber = identifiyKeyNumber;
+    }
 
     public Product(String name, Double price, String modelo, String fabricante, String detalhes) {
         this.name = name;
