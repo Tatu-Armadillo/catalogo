@@ -1,4 +1,4 @@
-INSERT INTO challenge.products (name, price, modelo, fabricante, detalhes, identifiy_key_product) VALUES
+INSERT INTO challenge.products (name, price, modelo, fabricante, detalhes, product_code) VALUES
 ('Produto A', 99.99, 'Modelo A1', 'Fabricante X', 'Detalhes sobre o Produto A', '20231030153000'),
 ('Produto B', 150.50, 'Modelo B2', 'Fabricante Y', 'Detalhes sobre o Produto B', '20231030174512'),
 ('Produto C', 75.00, 'Modelo C3', 'Fabricante Z', 'Detalhes sobre o Produto C', '20231030123045'),
@@ -10,7 +10,7 @@ INSERT INTO challenge.products (name, price, modelo, fabricante, detalhes, ident
 ('Produto I', 30.00, 'Modelo I9', 'Fabricante Z', 'Detalhes sobre o Produto I', '20231030105000'),
 ('Produto J', 110.00, 'Modelo J0', 'Fabricante X', 'Detalhes sobre o Produto J', '20231030150000');
 
-INSERT INTO challenge.stocks (quantity, last_update, code_number, product) VALUES
+INSERT INTO challenge.stocks (quantity, last_update, stock_code, product) VALUES
 (100, '2024-10-30 10:00:00', '20231030180000', 1),
 (200, '2024-10-30 10:05:00', '20231030213030', 2),
 (50, '2024-10-30 10:10:00', '20231030204510', 3),

@@ -34,15 +34,15 @@ public class Product {
     @Column(name = "detalhes")
     private String detalhes;
 
-    @Column(name = "identifiy_key_product")
-    private String identifiyKeyNumber;
+    @Column(name = "product_code")
+    private String productCode;
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private Stock stock;
 
-    public Product(final String identifiyKeyNumber) {
-        this.identifiyKeyNumber = identifiyKeyNumber;
+    public Product(final String productCode) {
+        this.productCode = productCode;
     }
 
     public Product(String name, Double price, String modelo, String fabricante, String detalhes) {

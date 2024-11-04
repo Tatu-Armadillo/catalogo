@@ -13,7 +13,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class ProductService {
-    
+
     private final ProductRepository productRepository;
     private final StockService stockService;
 
@@ -22,11 +22,10 @@ public class ProductService {
     }
 
     public Product save(final Product entity) {
-        entity.setIdentifiyKeyNumber(GenetedIdentifyKeyCode.createCodeNumber());
+        entity.setProductCode(GenetedIdentifyKeyCode.createCodeNumber());
         final var product = this.productRepository.saveAndFlush(entity);
         this.stockService.save(new Stock(product));
         return product;
     }
-
 
 }

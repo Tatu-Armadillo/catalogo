@@ -10,6 +10,6 @@ import br.com.fiap.catalogo.model.Stock;
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long> {
 
-    Optional<Stock> findStockByProductIdentifiyKeyNumber(final String identifiyKeyNumber);
+    Optional<Stock> findStockByProductProductCode(final String productCode);
 
 }

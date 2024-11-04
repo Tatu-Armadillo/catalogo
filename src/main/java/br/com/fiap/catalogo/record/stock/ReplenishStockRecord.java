@@ -1,9 +1,9 @@
-package br.com.fiap.catalogo.repository;
+package br.com.fiap.catalogo.record.stock;
 
 import jakarta.validation.constraints.NotBlank;
 
 public record ReplenishStockRecord(
-        @NotBlank String productKeyIdentify,
+        @NotBlank String productCode,
         Integer quantity) {
 
 }

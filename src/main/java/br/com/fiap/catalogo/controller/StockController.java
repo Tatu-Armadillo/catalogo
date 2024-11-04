@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.fiap.catalogo.model.Product;
 import br.com.fiap.catalogo.model.Stock;
-import br.com.fiap.catalogo.repository.ReplenishStockRecord;
+import br.com.fiap.catalogo.record.stock.ReplenishStockRecord;
 import br.com.fiap.catalogo.service.StockService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
@@ -28,7 +28,7 @@ public class StockController {
             @RequestBody final ReplenishStockRecord record) {
         final var response = this.service.replenish(new Stock(
                 record.quantity(),
-                new Product(record.productKeyIdentify())));
+                new Product(record.productCode())));
         return ResponseEntity.ok(response);
     }
 

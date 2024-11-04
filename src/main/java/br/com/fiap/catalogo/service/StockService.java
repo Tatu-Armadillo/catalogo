@@ -18,12 +18,12 @@ public class StockService {
     private final StockRepository stockRepository;
 
     public Stock replenish(final Stock entity) {
-        final var persisted = this.findStockByProduct(entity.getProduct().getIdentifiyKeyNumber());
+        final var persisted = this.findStockByProduct(entity.getProduct().getProductCode());
         persisted.setLastUpdate(LocalDateTime.now());
         persisted.setQuantity(persisted.getQuantity() + entity.getQuantity());
         if (persisted.getQuantity() < 0) {
             throw new BusinessException(
-                    "the " + entity.getCodeNumber() + " is an out of stock product");
+                    "the " + entity.getStockCode() + " is an out of stock product");
         }
 
         return this.stockRepository.saveAndFlush(persisted);
@@ -32,14 +32,14 @@ public class StockService {
     public Stock save(final Stock entity) {
         entity.setQuantity(0);
         entity.setLastUpdate(LocalDateTime.now());
-        entity.setCodeNumber(GenetedIdentifyKeyCode.createCodeNumber());
+        entity.setStockCode(GenetedIdentifyKeyCode.createCodeNumber());
         return this.stockRepository.save(entity);
     }
 
-    private Stock findStockByProduct(final String productKeyIdentify) {
-        return this.stockRepository.findStockByProductIdentifiyKeyNumber(productKeyIdentify)
+    private Stock findStockByProduct(final String productCode) {
+        return this.stockRepository.findStockByProductProductCode(productCode)
                 .orElseThrow(
-                        () -> new NotFoundException("Not Found Stock by product with key = " + productKeyIdentify));
+                        () -> new NotFoundException("Not Found Stock by product with key = " + productCode));
     }
 
 }

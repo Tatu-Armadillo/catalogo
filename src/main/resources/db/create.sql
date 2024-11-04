@@ -7,14 +7,14 @@ create table challenge.products(
     modelo varchar(255),
     fabricante varchar(255),
     detalhes varchar(255),
-    identifiy_key_product varchar(255) unique not null
+    product_code varchar(255) unique not null
 );
 
 create table challenge.stocks(
     id_stock bigserial primary key,
     quantity integer not null,
     last_update timestamp not null,
-    code_number varchar(255),
+    stock_code varchar(255),
     product bigint not null
 );
 

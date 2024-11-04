@@ -25,8 +25,8 @@ public class Stock {
     @Column(name = "last_update")
     private LocalDateTime lastUpdate;
 
-    @Column(name = "code_number")
-    private String codeNumber;
+    @Column(name = "stock_code")
+    private String stockCode;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "product", foreignKey = @ForeignKey(name = "fk_products_stocks"))
