@@ -25,7 +25,6 @@ public class StockService {
             throw new BusinessException(
                     "the " + entity.getStockCode() + " is an out of stock product");
         }
-
         return this.stockRepository.saveAndFlush(persisted);
     }
 
@@ -36,10 +35,10 @@ public class StockService {
         return this.stockRepository.save(entity);
     }
 
-    private Stock findStockByProduct(final String productCode) {
+    public Stock findStockByProduct(final String productCode) {
         return this.stockRepository.findStockByProductProductCode(productCode)
                 .orElseThrow(
-                        () -> new NotFoundException("Not Found Stock by product with key = " + productCode));
+                        () -> new NotFoundException("Not Found Stock by product with code = " + productCode));
     }
 
 }
