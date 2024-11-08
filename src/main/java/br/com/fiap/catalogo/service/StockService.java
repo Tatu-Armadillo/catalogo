@@ -1,6 +1,7 @@
 package br.com.fiap.catalogo.service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,6 @@ import br.com.fiap.catalogo.exception.BusinessException;
 import br.com.fiap.catalogo.exception.NotFoundException;
 import br.com.fiap.catalogo.model.Stock;
 import br.com.fiap.catalogo.repository.StockRepository;
-import br.com.fiap.catalogo.utils.GenetedIdentifyKeyCode;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -31,7 +31,7 @@ public class StockService {
     public Stock save(final Stock entity) {
         entity.setQuantity(0);
         entity.setLastUpdate(LocalDateTime.now());
-        entity.setStockCode(GenetedIdentifyKeyCode.createCodeNumber());
+        entity.setStockCode(UUID.randomUUID().toString());
         return this.stockRepository.save(entity);
     }
 

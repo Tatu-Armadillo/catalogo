@@ -1,3 +1,5 @@
+drop schema if exists challenge cascade;
+
 create schema challenge;
 
 create table challenge.products(
@@ -14,7 +16,7 @@ create table challenge.stocks(
     id_stock bigserial primary key,
     quantity integer not null,
     last_update timestamp not null,
-    stock_code varchar(255),
+    stock_code varchar(255) unique not null,
     product bigint not null
 );
 
