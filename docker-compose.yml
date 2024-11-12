@@ -1,7 +1,7 @@
 services:
-  postgres:
+  catalogo-postgres:
     image: postgres
-    container_name: postgres
+    container_name: catalogo-postgres
     shm_size: 128mb
     restart: always
     environment:
@@ -15,25 +15,25 @@ services:
     networks:
       - catalogo-postgres-network
 
-  # catalogo-api:
-  #   build: .
-  #   restart: always
-  #   container_name: catalogo-api
-  #   environment:
-  #     PORT_APP: 9090
-  #     DB_SGDB: postgresql
-  #     DB_HOST: postgres
-  #     DB_PORT: 5432
-  #     DB_NAME: catalogo
-  #     DB_SCHEMA: challenge
-  #     DB_USER: catalogo
-  #     DB_PASSWORD: catalogo
-  #   ports:
-  #     - "9090:9090"
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - catalogo-postgres-network
+  catalogo-api:
+    build: .
+    restart: always
+    container_name: catalogo-api
+    environment:
+      PORT_APP: 9090
+      DB_SGDB: postgresql
+      DB_HOST: catalogo-postgres
+      DB_PORT: 5432
+      DB_NAME: catalogo
+      DB_SCHEMA: challenge
+      DB_USER: catalogo
+      DB_PASSWORD: catalogo
+    ports:
+      - "9090:9090"
+    depends_on:
+      - catalogo-postgres
+    networks:
+      - catalogo-postgres-network
 
 networks:
   catalogo-postgres-network:
