@@ -21,7 +21,7 @@ public class StockService {
         final var persisted = this.findStockByProduct(entity.getProduct().getProductCode());
         persisted.setLastUpdate(LocalDateTime.now());
         persisted.setQuantity(persisted.getQuantity() + entity.getQuantity());
-        if (persisted.getQuantity() < 0) {
+        if (persisted.getQuantity() <= 0) {
             throw new BusinessException(
                     "the " + entity.getStockCode() + " is an out of stock product");
         }

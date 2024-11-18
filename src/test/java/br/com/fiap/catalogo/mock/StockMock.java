@@ -11,7 +11,7 @@ public class StockMock {
         final Stock stock = new Stock();
         stock.setId(1L);
         stock.setLastUpdate(LocalDateTime.now());
-        stock.setQuantity(1);
+        stock.setQuantity(0);
         stock.setStockCode(UUID.randomUUID().toString());
         stock.setProduct(ProductMock.mock());
         return stock;
