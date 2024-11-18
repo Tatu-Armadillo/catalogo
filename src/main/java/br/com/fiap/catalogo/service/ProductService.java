@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.fiap.catalogo.exception.NotFoundException;
 import br.com.fiap.catalogo.model.Product;
 import br.com.fiap.catalogo.model.Stock;
 import br.com.fiap.catalogo.repository.ProductRepository;
@@ -26,13 +25,9 @@ public class ProductService {
     public Product save(final Product entity) {
         entity.setProductCode(UUID.randomUUID().toString());
         final var product = this.productRepository.saveAndFlush(entity);
-        this.stockService.save(new Stock(product));
+        final var stock = this.stockService.save(new Stock(product));
+        product.setStock(stock);
         return product;
-    }
-
-    public Product findById(final Long id) {
-        return this.productRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Not Found Proudct with id = " + id));
     }
 
 }
