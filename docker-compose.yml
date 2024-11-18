@@ -12,6 +12,8 @@ services:
       - "5432:5432"
     expose:
       - "5432"
+    volumes:
+      - catalogo_data:/var/lib/postgresql/data
     networks:
       - catalogo-postgres-network
 
@@ -38,3 +40,6 @@ services:
 networks:
   catalogo-postgres-network:
     driver: bridge
+
+volumes:
+  catalogo_data:
