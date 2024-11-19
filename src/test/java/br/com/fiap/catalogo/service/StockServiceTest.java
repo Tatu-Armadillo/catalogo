@@ -22,7 +22,7 @@ import br.com.fiap.catalogo.mock.StockMock;
 import br.com.fiap.catalogo.model.Stock;
 import br.com.fiap.catalogo.repository.StockRepository;
 
-public class StockServiceTest {
+class StockServiceTest {
 
     @InjectMocks
     private StockService stockService;
@@ -39,10 +39,13 @@ public class StockServiceTest {
     @Test
     void testReplenishWithQuantityGreaterThanZero() {
 
+        final var stock = StockMock.mock();
+        stock.setQuantity(1);
+
         when(this.stockRepository.findStockByProductProductCode(anyString())).thenReturn(Optional.of(StockMock.mock()));
         when(this.stockRepository.saveAndFlush(any(Stock.class))).thenReturn(StockMock.mock());
 
-        final var response = this.stockService.replenish(StockMock.mock());
+        final var response = this.stockService.replenish(stock);
 
         assertNotNull(response);
     }
