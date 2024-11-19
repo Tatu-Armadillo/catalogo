@@ -1,0 +1,42 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /catalogo
+
+spring:
+  application:
+    name: Microsservico Catalogo
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: true
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  batch:
+    jdbc:
+      initialize-schema: always
+  sql:
+    init:
+      mode: always
+
+springdoc:
+  paths-to-match: /**
+  paths-to-exclude: /swagger-resources/**
+  swagger-ui:
+    use-root-path: true
+
+spring.data.web:
+  pageable:
+    size-parameter: pageSize
+    page-parameter: pageNumber
+    default-page-size: 15
+    one-indexed-parameters: true
+    max-page-size: 1000
+  sort:
+    sort-parameter: order

@@ -36,6 +36,9 @@ spring:
   batch:
     jdbc:
       initialize-schema: always
+  sql:
+    init:
+      mode: always
   servlet:
     multipart:
       enabled: true

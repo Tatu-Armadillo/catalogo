@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import br.com.fiap.catalogo.batch.BatchExecutation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.batch.core.JobExecutionException;
 
 @RestController
 @RequestMapping("/import")
@@ -30,19 +29,12 @@ public class ImportBatchController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Object> processCatalogo(@RequestParam final MultipartFile file) {
-        try {
-            if (!file.getOriginalFilename().endsWith(".csv")) {
-                return ResponseEntity.badRequest().body("Arquivo diferente do '.csv' ");
-            }
-            final var jobExecution = this.batchExecutation.executeJob(jobRepository, file);
-            return ResponseEntity.ok("Job iniciado com sucesso! ID do Job: " + jobExecution.getJobId());
-        } catch (JobExecutionException e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body("Erro ao iniciar o job: " + e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().body("Erro inesperado: " + e.getMessage());
+    public ResponseEntity<Object> processCatalogo(@RequestParam final MultipartFile file) throws Exception {
+        if (!file.getOriginalFilename().endsWith(".csv")) {
+            return ResponseEntity.status(415).body("Arquivo diferente do '.csv' ");
         }
+        final var jobExecution = this.batchExecutation.executeJob(jobRepository, file);
+        return ResponseEntity.ok("Job iniciado com sucesso! ID do Job: " + jobExecution.getJobId());
+
     }
 }

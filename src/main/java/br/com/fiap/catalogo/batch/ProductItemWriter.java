@@ -39,13 +39,10 @@ public class ProductItemWriter implements ItemWriter<Product> {
             }, keyHolder);
 
             Long productId = keyHolder.getKey().longValue();
-            if (productId != null) {
-                product.setId(productId); 
-            }
 
             jdbcTemplate.update(
                     "INSERT INTO challenge.stocks (product, quantity, stock_code, last_update) VALUES (?, ?, ?, ?)",
-                    product.getId(),
+                    productId,
                     0,
                     UUID.randomUUID().toString(),
                     java.time.LocalDateTime.now() 

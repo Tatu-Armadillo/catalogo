@@ -1,7 +1,5 @@
 package br.com.fiap.catalogo.model;
 
-import java.util.UUID;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -38,13 +36,6 @@ public class Product {
 
     @Column(name = "product_code", unique = true, nullable = false)
     private String productCode;
-
-    @PrePersist
-    public void prePersist() {
-        if (productCode == null) {
-            productCode = UUID.randomUUID().toString();
-        }
-    }
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")

@@ -1,5 +1,7 @@
 package br.com.fiap.catalogo.mock;
 
+import java.util.UUID;
+
 import br.com.fiap.catalogo.model.Product;
 
 public class ProductMock {
@@ -12,7 +14,7 @@ public class ProductMock {
         product.setModelo("modelo");
         product.setFabricante("fabricante");
         product.setDetalhes("detalhes");
-        product.setProductCode("productCode");
+        product.setProductCode(UUID.randomUUID().toString());
         return product;
     }
 
