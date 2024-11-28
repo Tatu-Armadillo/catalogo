@@ -12,6 +12,8 @@ public class Order {
 
     private String userEmail;
 
+    private String message;
+
     private LocalDateTime createDate;
 
     private Map<String, Integer> productQuantities;
