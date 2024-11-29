@@ -37,7 +37,7 @@ public class UpdateOrderService {
         
         log.info(requestBody);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://pedidos-api:9090/api/order/update_status"))
+                .uri(URI.create(pedidosUrl))
                 .header("Content-Type", "application/json")
                 .method("PATCH", HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
