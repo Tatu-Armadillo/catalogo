@@ -18,5 +18,5 @@ public class Order {
 
     private Map<String, Integer> productQuantities;
 
-    private String paymentStatus;
+    private String status;
 }

@@ -26,7 +26,7 @@ public class OrderCreatedEventListener implements Consumer<Order> {
         try {
             order.getProductQuantities().forEach((productCode, quantity) -> {
                 this.stockService.replenish(new Stock(
-                        quantity,
+                        quantity*-1,
                         new Product(productCode)));
 
             });
